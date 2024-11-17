@@ -1,4 +1,4 @@
-from Repository.OrderRepository import OrderRepository
+from app.Repository.OrderRepository import OrderRepository
 from sqlalchemy.orm import Session
 
 class OrderService:

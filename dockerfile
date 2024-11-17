@@ -16,7 +16,7 @@ RUN pip install mysql-connector-python
 RUN pip install pymysql
 
 # Expor a porta da API
-EXPOSE 5000
+EXPOSE 5000  
 
-# Comando para iniciar a API
-CMD ["python", "run.py"]
+# Comando para rodar a aplicação 
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "5000"]
