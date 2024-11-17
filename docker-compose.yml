@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  python-app:
+    build:
+      context: .
+    container_name: python-container
+    volumes:
+      - .:/app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: dsgn_py
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: diamond404
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
