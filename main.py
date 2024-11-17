@@ -8,6 +8,6 @@ app = FastAPI()
 # Incluindo as rotas do controller
 app.include_router(order_router, tags=["orders"])
 
-@app.get("/order-teste")
+@app.get("/")
 def home():
-    return {"message": "Hello World"}
+    return {"message": "conectado com sucesso!"}

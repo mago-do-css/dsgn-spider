@@ -16,3 +16,7 @@ class OrderController:
 @order_router.get("/order-service/{order_id}")
 def get_order(order_id: int, controller: OrderController = Depends(OrderController)):
     return controller.get_order(order_id)
+
+@order_router.get("/order-intro")
+def get_order():
+    return {"message": "Conectado com sucesso na controller"}
