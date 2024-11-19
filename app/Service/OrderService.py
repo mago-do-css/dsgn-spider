@@ -7,5 +7,5 @@ class OrderService:
         self.order_repository = OrderRepository(db)
 
 
-    def get_order(self, order_id: int):
-        return self.order_repository.get_order(order_id)
+    def get_download_history(self):
+        return self.order_repository.get_download_history()

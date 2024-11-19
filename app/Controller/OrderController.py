@@ -1,22 +1,32 @@
 from fastapi import APIRouter, Depends
-from sqlalchemy.orm import Session
 from app.Service.OrderService import OrderService
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
 
 order_router = APIRouter()
 
 class OrderController:
+    def __init__(self, order_service: OrderService):
+        self.order_service = order_service
 
-    # def __init__(self, db: Session = Depends(get_db)):  # Injeção de dependência para o banco de dados
-    #     self.order_service = OrderService(db)
+def get_download_history(self, order_id: int):
+    # Chama o serviço para buscar o pedido (sem mexer no banco aqui)
+    return self.order_service.get_download_history()
 
-    def get_order(self, order_id: int):
-        return self.order_service.get_order(order_id)
+# Criar dependência para o serviço
+def get_service() -> OrderService:
+    # Retornar uma instância do serviço
+    return OrderService()
 
-# Instanciando a controller e definindo a rota
 @order_router.get("/order-service/{order_id}")
-def get_order(order_id: int, controller: OrderController = Depends(OrderController)):
-    return controller.get_order(order_id)
+def get_download_history(order_id: int, service: OrderService = Depends(get_service)):
+    controller = OrderController(order_service=service)
+    return controller.get_download_history(order_id)
 
 @order_router.get("/order-intro")
-def get_order():
-    return {"message": "Conectado com sucesso na controller"}
+def get_download_history_intro(controller: OrderController = Depends(get_service)):
+    
+    # records = controller.get_download_history() 
+     
+    return 'bucetinha'
